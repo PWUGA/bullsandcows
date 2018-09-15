@@ -2,6 +2,6 @@
 #define INPUTCHECKER_H
 #include <stdio.h>
 
-char checkInput (int num);
+int checkInput (char *input);
 
 #endif
