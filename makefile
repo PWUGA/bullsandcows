@@ -3,8 +3,12 @@ OBJ = gcc -I src -c $< -o $@ $(CFLAGS)
 
 default: bin obj bin/bullsandcows
 
-bin/bullsandcows: obj/main.o
+bin/bullsandcows: obj/main.o obj/numgenerator.o
 	gcc $^ -o $@ $(CFLAGS)
+
+obj/numgenerator.o: src/numgenerator.c
+	$(OBJ)
+
 obj/main.o: src/main.c
 	$(OBJ)
 
