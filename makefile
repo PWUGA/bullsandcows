@@ -1,11 +1,19 @@
 CFLAGS = -Wall -Werror -std=c99
-OBJ = gcc -I src -c $< -o $@ $(CFLAGS)
+OBJ = gcc -I src -I thirdparty -c $< -o $@ $(CFLAGS)
 
 default: bin obj bin/bullsandcows
+
+test: bin obj bin/bnctests
 
 bin/bullsandcows: obj/main.o obj/numgenerator.o obj/inputchecker.o obj/counter.o obj/game.o
 	gcc $^ -o $@ $(CFLAGS)
 
+bin/bnctests: obj/main_test.o obj/numgenerator.o obj/inputchecker.o obj/counter.o
+	gcc $^ -o $@ $(CFLAGS)
+
+obj/main_test.o: src/main_test.c
+	$(OBJ)
+		
 obj/numgenerator.o: src/numgenerator.c
 	$(OBJ)
 
