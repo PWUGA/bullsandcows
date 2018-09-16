@@ -1,4 +1,4 @@
-CFLAGS = -Wall -Werror
+CFLAGS = -Wall -Werror -std=c99
 OBJ = gcc -I src -c $< -o $@ $(CFLAGS)
 
 default: bin obj bin/bullsandcows
