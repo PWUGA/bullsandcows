@@ -161,6 +161,39 @@ CTEST (InputChecker, Incorrect4)
 	real = checkInput (input);
 	ASSERT_EQUAL (exp, real);
 }
+
+CTEST (NumGenerator, Correct)
+{
+	int exp;
+	int real;
+	int *num = malloc (sizeof (int));
+	int digits[4];
+	generateNumber (num);
+	digits[0] =  *num / 1000;
+    digits[1] = (*num % 1000) / 100;
+    digits[2] = (*num % 100) / 10;
+    digits[3] =  *num % 10;
+	exp = 1;
+	if (digits[0] != digits[1] && digits [0] != digits [2] && digits[0] != digits[3] && digits[1] != digits[2] && digits[1] != digits[3] && digits[2] != digits[3])
+		real = 1;
+	else real = 0;
+	ASSERT_EQUAL (exp, real);
+}
+
+CTEST (NumDivider, Correct)
+{
+	int exp;
+	int real;
+	int num;
+	int *digits = malloc (sizeof (int)*4);
+	exp = 1;
+	num = 1204;
+	divideNumber (num, digits);
+	if (num / 1000 == digits[0] && num % 1000 / 100 == digits[1] && num % 100 / 10 == digits[2] && num % 10 == digits[3])
+		real = 1;
+	else real = 0;
+	ASSERT_EQUAL (exp, real);
+}
 int main (int argc, const char** argv)
 {
 	return ctest_main (argc, argv);
